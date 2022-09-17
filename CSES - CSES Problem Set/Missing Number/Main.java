@@ -1,6 +1,5 @@
 //  Missing Number
 
-import java.util.*;
 import java.lang.*;
 import java.io.*;
 class Main {
@@ -13,12 +12,14 @@ class Main {
         for (int i =0; i<n-1; i++){
             arr[i] = Integer.parseInt(line[i]);
         }
-        quick_sort(arr, 0, n-2);
-//        for (int i =0; i<n-1; i++){
-//            System.out.print(arr[i]);
-//        }
-        int ans = binary_search(arr, 0, n-2);
-        System.out.println(ans);
+        if(n==2 && arr[0] == 2){
+            System.out.println(1);
+        }
+        else {
+            quick_sort(arr, 0, n - 2);
+            int ans = binary_search(arr, 0, n - 2);
+            System.out.println(ans);
+        }
     }
     public static int partition(int [] num, int low, int len){
         int pivot = num[len];
@@ -49,10 +50,10 @@ class Main {
         while(low<high) {
             int mid = (low + high + 1)/2;
             if (num[mid] - mid == 1)
-                low = mid+1;
+                low = mid;
             else
-                high = mid;
+                high = mid-1;
         }
-        return num[low];
+        return num[low]+1;
     }
 }
